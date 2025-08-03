@@ -35,8 +35,11 @@ const userSlice = createSlice({
         state.user.promptsUsedToday += 1
       }
     },
+    clearUser: (state) => {
+      state.user = null
+    },
   },
 })
 
-export const { setUser, setLoading, updatePromptUsage } = userSlice.actions
+export const { setUser, setLoading, updatePromptUsage, clearUser } = userSlice.actions
 export default userSlice.reducer
