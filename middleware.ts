@@ -1,14 +1,9 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server"
 
-// Only protect specific routes that actually need authentication
-const isProtectedRoute = createRouteMatcher(["/dashboard(.*)", "/profile(.*)", "/settings(.*)", "/api/user(.*)"])
+const isProtectedRoute = createRouteMatcher(["/dashboard(.*)", "/profile(.*)", "/settings(.*)"])
 
 export default clerkMiddleware((auth, req) => {
-  // Only protect routes that actually need authentication
-  if (isProtectedRoute(req)) {
-    auth().protect()
-  }
-  // Let all other routes pass through without authentication
+  if (isProtectedRoute(req)) auth().protect()
 })
 
 export const config = {
